@@ -1,0 +1,229 @@
+<%@ Language=VBScript %>
+<!-- #Include file="../adovbs.inc" -->
+<!-- #Include file="../funcoes.inc" -->
+<%
+	Response.buffer=false
+	Server.ScriptTimeout = 600
+if Session("UsuarioMaster")="" then response.write "<script language='JavaScript' type='text/javascript'>window.top.location.href='" & Application("Site") & "';</script>"
+if session("a75")="N" or session("a75")="" then response.write "<script language='JavaScript' type='text/javascript'>window.top.location.href='" & Application("Site") & "';</script>"
+%>
+<html>
+<head>
+<meta http-equiv="CONTENT-TYPE" content="text/html; charset=windows-1252">
+<title>Gerador de etiquetas</title>
+<link rel="stylesheet" type="text/css" href="../<%=session("estilo")%>">
+<link rel="SHORTCUT ICON" href="../images/rho.png">
+<script type="text/javascript" src="../jquery.js"></script>
+<SCRIPT LANGUAGE="JavaScript" type="text/javascript" src="../selectbox.js"></SCRIPT>
+<script language="JavaScript" type="text/javascript"><!--
+function library1() {
+	temp=form.id_etiq.value
+	tipo=temp.substring(0,1)
+	temp=temp.substring(0,temp.length)
+	form.textosql.value=temp
+}	
+function ColectSel(selid,tbid){
+ var sel=document.getElementById(selid);
+ var tb=document.getElementById(tbid);
+ tb.value='';
+ for (var zxc0=0;zxc0<sel.options.length;zxc0++){
+  tb.value+=sel.options[zxc0].value+',';
+ }
+}
+--></script>
+<script language="VBScript">
+'Sub right_onclick
+'	dim i as integer
+'	for i=0 to document.form2.list2.listcount
+'		document.form2.list2.selected(i)=true
+'	next
+'end sub
+'Sub left_onclick
+'	dim i as integer
+'	for i=0 to document.form2.list2.listcount
+'		document.form2.list2.selected(i)=true
+'	next
+'end sub
+</script>
+</head>
+<body>
+<%
+dim conexao, conexao2, chapach, rs, rs2
+set conexao=server.createobject ("ADODB.Connection")
+conexao.Open application("conexao")
+set rs=server.createobject ("ADODB.Recordset")
+Set rs.ActiveConnection = conexao
+set rsquery=server.createobject ("ADODB.Recordset")
+set rsquery.ActiveConnection = conexao
+
+pixel=96/2.54
+point=72/2.54
+pointp=72.27/2.54
+vlinha=13
+session("querytexto")=request.form("textosql")
+
+if request.form("E2")<>"" then
+
+end if
+
+if request.form("e2")="" then
+
+%>
+<form method="POST" action="etiqueta2.asp" name="form">
+<input type="hidden" name="colunas"                 value="<%=request.form("colunas")%>">
+<input type="hidden" name="linhas"                  value="<%=request.form("linhas")%>">
+<input type="hidden" name="msuperior"          value="<%=request.form("msuperior")%>">
+<input type="hidden" name="mdireita"           value="<%=request.form("mdireita")%>">
+<input type="hidden" name="mesquerda"          value="<%=request.form("mesquerda")%>">
+<input type="hidden" name="altura"          value="<%=request.form("altura")%>">
+<input type="hidden" name="largura"         value="<%=request.form("largura")%>">
+<input type="hidden" name="espacolinha"             value="<%=request.form("espacolinha")%>">
+<input type="hidden" name="espacocoluna"            value="<%=request.form("espacocoluna")%>">
+<input type="hidden" name="msuperiorp" value="<%=request.form("msuperiorp")%>">
+<input type="hidden" name="mesquerdap" value="<%=request.form("mesquerdap")%>">
+
+<p class=titulo>Gerador de Etiquetas - Etapa 2/3</p>
+<%
+sqls="select id_etiq, descricao, sqltexto from etiqueta_query order by descricao"
+rs.Open sqls, ,adOpenStatic, adLockReadOnly
+%>
+<table border="0" bordercolor="#cccccc" cellpadding="2" cellspacing="0" style="border-collapse: collapse" width=500>
+<tr><td class=campo valign=top>
+<select name="id_etiq" size="10" onchange="library1()">
+	<option value=0>Selecione uma query</option>
+<%
+rs.movefirst:do while not rs.eof
+if rs("sqltexto")=request.form("id_etiq") then temp1="selected" else temp1=""
+%>	
+	<option value="<%=rs("sqltexto")%>" <%=temp1%> ><%=rs("descricao")%></option>
+<%
+rs.movenext:loop
+rs.close
+%>
+</select>
+</td><td class=campo valign=top>
+<textarea rows="<%=vlinha%>" class="p" name="textosql" cols="100"><%=session("querytexto")%></textarea>
+</td></tr></table>
+
+<p style="margin-top: 0; margin-bottom: 0"><input type="submit" value="Visualizar amostra dos dados" name="S1" class=button></p>
+
+<table border="0" bordercolor="#cccccc" cellpadding="2" cellspacing="0" style="border-collapse: collapse" width=500>
+<%
+pag_etiqueta=cdbl(request.form("colunas")*request.form("linhas"))
+
+if request.form("s1")<>"" then
+	sql=request.form("textosql")
+	session("querytexto")=sql
+	rs.Open sql, ,adOpenStatic
+	totalregistros=rs.recordcount
+	paginas=int(totalregistros/pag_etiqueta)+1
+	rs.close
+	rsquery.Open sql, ,adOpenStatic
+	if not rsquery.eof then
+		response.write "<table border='1' bordercolor='#CCCCCC' cellpadding='0' cellspacing='0' style='border-collapse: collapse'><tr>"
+		response.write "<tr><td class=grupor colspan=" & rsquery.fields.count & ">Amostra dos dados</td></tr>"
+		for x=0 to rsquery.fields.count-1
+			response.write "<td class=titulor>" & rsquery.fields(x).name & "</td>"
+		next
+		response.write "</tr>"
+		rsquery.movefirst
+		for l=1 to 10
+			response.write "<tr>"
+			for x=0 to rsquery.fields.count-1
+				response.write "<td class=campor>" 
+				if rsquery.fields(x).value="" or isnull(rsquery.fields(x).value) then response.write "&nbsp;" else response.write rsquery.fields(x).value 
+				'response.write rsquery.fields(x).value 
+				response.write "</td>"
+			next
+			response.write "</tr>"
+			rsquery.movenext
+		next
+		response.write "<tr><td class=grupo colspan="&rsquery.fields.count&">"&totalregistros&" registros na seleção (" & paginas & " folhas de etiquetas) </td></tr>"
+		response.write "</table>"
+	else
+		response.write "<p class=realce>Sem registros"
+	end if
+	rsquery.close
+	set rsquery=nothing
+end if 'request s1
+
+%>
+</form>
+<form method="post" action="etiqueta3.asp" name="form2">
+
+<input type="hidden" name="sentido"                 value="<%=request.form("sentido")%>">
+<input type="hidden" name="colunas"                 value="<%=request.form("colunas")%>">
+<input type="hidden" name="linhas"                  value="<%=request.form("linhas")%>">
+<input type="hidden" name="msuperior"          value="<%=request.form("msuperior")%>">
+<input type="hidden" name="margemdireita"           value="<%=request.form("margemdireita")%>">
+<input type="hidden" name="mesquerda"          value="<%=request.form("marqemesquerda")%>">
+<input type="hidden" name="altura"          value="<%=request.form("altura")%>">
+<input type="hidden" name="largura"         value="<%=request.form("largura")%>">
+<input type="hidden" name="espacolinha"             value="<%=request.form("espacolinha")%>">
+<input type="hidden" name="espacocoluna"            value="<%=request.form("espacocoluna")%>">
+<input type="hidden" name="msuperiorimpressao" value="<%=request.form("msuperiorimpressao")%>">
+<input type="hidden" name="mesquerdap" value="<%=request.form("mesquerdap")%>">
+<input type="hidden" name="sqletiqueta"             value="<%=session("querytexto")%>">
+
+<br>
+<table border="0" bordercolor="#cccccc" cellpadding="2" cellspacing="0" style="border-collapse: collapse">
+<tr>
+	<td class=campop align=center style="border-bottom:1px solid">Campos disponíveis:</td>
+	<td class=campop align=center></td>
+	<td class=campop align=center style="border-bottom:1px solid">Campos selecionados</td></tr>
+<tr>
+	<td class=campop>
+	
+<%
+if sql<>"" then 
+	rs.Open sql, ,adOpenStatic
+	if rs.recordcount>10 then linhas=10 else linhas=rs.recordcount
+%>
+	<select name="list1" size="<%=linhas%>" multiple 
+	onDblClick="Selectbox.moveSelectedOptions(this.form.list1,this.form.list2,this.form.movesort.checked,this.form.movepattern1.value)">
+<%for l=0 to rs.fields.count-1%>
+		<option value="<%=rs.fields(l).name%>"><%=rs.fields(l).name%></option>
+<%next%>
+	</select>
+<%end if%>
+	</td>
+	<td class=campo align=center>
+
+  <input class=button style="width:45px" type="button" name="right" value="&gt;&gt;"
+   onClick="Selectbox.moveSelectedOptions(this.form.list1,this.form.list2,this.form.movesort.checked,this.form.movepattern1.value);"><br><br>
+  <input class=button style="width:45px" type="button" name="right" value="todos &gt;&gt;"
+   onClick="Selectbox.moveAllOptions(this.form.list1,this.form.list2,this.form.movesort.checked,this.form.movepattern1.value);"><br><br>
+  <input class=button style="width:45px" type="button" name="left" value="&lt;&lt;"
+   onClick="Selectbox.moveSelectedOptions(this.form.list2,this.form.list1,this.form.movesort.checked,this.form.movepattern1.value);"><br><br>
+  <input class=button style="width:45px" type="button" name="left" value="todos &lt;&lt;"
+   onClick="Selectbox.moveAllOptions(this.form.list2,this.form.list1,this.form.movesort.checked,this.form.movepattern1.value);"><br>
+
+<input type="hidden" name="movepattern1" size="8" value="">
+<input name="movesort" type="checkbox" value="true"> Ordenar
+	</td>
+
+	<td class=campop>
+  <select name="list2" multiple size=10 
+   onDblClick="Selectbox.moveSelectedOptions(this.form.list2,this.form.list1,this.form.movesort.checked,this.form.movepattern1.value)">
+  </select>
+
+	</td>
+</tr>
+</table>
+<input type="hidden" name="campos" value="">
+<!--
+</form>
+<form method="POST" action="etiqueta3.asp" name="form2">
+-->
+	<input type="submit" class=button value="Continuar para próxima etapa" name="E2" onclick="ColectSel('list2','campos');" >
+</form>
+<%
+
+end if 'request.form e2
+
+set rs=nothing
+conexao.close
+set conexao=nothing
+%>
+</body>
+</html>

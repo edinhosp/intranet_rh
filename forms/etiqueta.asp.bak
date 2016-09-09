@@ -1,0 +1,274 @@
+<%@ Language=VBScript %>
+<!-- #Include file="../adovbs.inc" -->
+<!-- #Include file="../funcoes.inc" -->
+<%
+	Response.buffer=false
+	Server.ScriptTimeout = 600
+if Session("UsuarioMaster")="" then response.write "<script language='JavaScript' type='text/javascript'>window.top.location.href='" & Application("Site") & "';</script>"
+if session("a75")="N" or session("a75")="" then response.write "<script language='JavaScript' type='text/javascript'>window.top.location.href='" & Application("Site") & "';</script>"
+%>
+<html>
+<head>
+<meta http-equiv="CONTENT-TYPE" content="text/html; charset=windows-1252">
+<title>Gerador de etiquetas</title>
+<link rel="stylesheet" type="text/css" href="../<%=session("estilo")%>">
+<link rel="SHORTCUT ICON" href="../images/rho.png">
+<script language="JavaScript" type="text/javascript"><!--
+function descricao() { form.sqltexto.value=form.descricao.value; }
+function sqltexto()  { form.descricao.value=form.sqltexto.value; }
+function library1() {
+	temp=form2.id_etiq.value
+	tipo=temp.substring(0,1)
+	temp=temp.substring(0,temp.length)
+	form2.textosql.value=temp
+}	
+--></script>
+<script language="VBScript">
+</script>
+</head>
+<body>
+<%
+dim conexao, conexao2, chapach, rs, rs2
+set conexao=server.createobject ("ADODB.Connection")
+conexao.Open application("conexao")
+set rs=server.createobject ("ADODB.Recordset")
+Set rs.ActiveConnection = conexao
+
+if request.form("E1")="" and request.form("E2")="" then
+pixel=96/2.54
+point=72/2.54
+pointp=72.27/2.54
+%>
+<form method="POST" action="etiqueta.asp" name="form">
+<p class=titulo>Gerador de Etiquetas - Etapa 1/</p>
+
+?????opção para escolher etiquetas cadastradas
+
+<table border="0" bordercolor="#cccccc" cellpadding="2" cellspacing="0" style="border-collapse: collapse" width=500>
+<tr><td class=grupo colspan=2>Configurar etiquetas</td>
+</tr>
+<tr><td class=fundop>Sentido</td>
+	<td class=fundop><input type="radio" name="sentido" value="R" checked> Retrato<br>
+                 	<input type="radio" name="sentido" value="P"> Paisagem
+	</td>
+</tr>
+<tr><td class=fundop>Nº Colunas</td>	
+	<td class=fundop><input type="text" size="5" name="colunas" value="3"></td>
+</tr>
+<tr><td class=fundop>Nº Linhas</td>	
+	<td class=fundop><input type="text" size="5" name="linhas" value="10"></td>
+</tr>
+</table>	
+<%
+larg=496:alt=191
+c1=0.30:c2=2.00:c3=0.90:c4=0.85:c5=0.95:c6=0.75:c7=0.80:c8=0.95:c9=1.00:c10=0.80:c11=1.00:c12=0.65:c13=(larg-(c1+c2+c3+c4+c5+c6+c7+c8+c9+c10+c11+c12)*pixel)/pixel
+l1=0.33:l2=0.60:l3=0.33:l4=0.57:l5=0.38:l6=0.25:l7=0.35:l8=0.18:l9=1.00:l10=(alt-(l1+l2+l3+l4+l5+l6+l7+l8+l9)*pixel)/pixel
+'response.write (c1+c2+c3+c4+c5+c6+c7+c8+c9+c10+c11)*pixel
+%>
+<table border="0" bordercolor="red" cellpadding="1" width=500 height=200 cellspacing="0" style="background-color:transparent;border-collapse: collapse;background:transparent url(../images/fundo_etiqueta.jpg) ;">
+<tr>
+	<td height="<%=l1*pixel%>px" width="<%=c1*pixel%>px" style="background-color:transparent"></td>
+	<td width="<%=c2*pixel%>px" style="background-color:transparent"></td>	<td width="<%=c3*pixel%>px" style="background-color:transparent"></td>
+	<td width="<%=c4*pixel%>px" style="background-color:transparent"></td>	<td width="<%=c5*pixel%>px" style="background-color:transparent"></td>
+	<td width="<%=c6*pixel%>px" style="background-color:transparent"></td>	<td width="<%=c7*pixel%>px" style="background-color:transparent"></td>
+	<td width="<%=c8*pixel%>px" style="background-color:transparent"></td>	<td width="<%=c9*pixel%>px" style="background-color:transparent"></td>
+	<td width="<%=c10*pixel%>px" style="background-color:transparent"></td>	<td width="<%=c11*pixel%>px" style="background-color:transparent"></td>
+	<td width="<%=c12*pixel%>px" style="background-color:transparent"></td>	<td width="<%=c13*pixel%>px" style="background-color:transparent"></td>
+</tr>
+<tr>
+	<td height="<%=l2*pixel%>px" width="<%=c1*pixel%>px" style="background-color:transparent"></td>
+	<td colspan=2 width="<%=c2*pixel%>px" style="background-color:transparent"></td>
+	<td colspan=2 width="<%=c4*pixel%>px" style="background-color:transparent" valign=top>
+		<input type="text" size=6 class="help_input" value="1,27" tabindex=1 name="margemsuperior"></td>
+	<td colspan=8 width="<%=c6*pixel%>px" style="background-color:transparent"></td>
+</tr>
+<tr>
+	<td height="<%=l3*pixel%>px" width="<%=c1*pixel%>px" style="background-color:transparent"></td>
+	<td colspan=8 width="<%=c2*pixel%>px" style="background-color:transparent"></td>
+	<td colspan=2 rowspan=2 width="<%=c10*pixel%>px" style="background-color:transparent" valign=top>
+		<input type="text" size=6 class="help_input" value="0,2" tabindex=6 name="margemsuperiorimpressao"></td>
+	<td colspan=2 width="<%=c12*pixel%>px" style="background-color:transparent"></td>
+</tr>
+<tr>
+	<td height="<%=l4*pixel%>px" width="<%=c1*pixel%>px" style="background-color:transparent"></td>
+	<td width="<%=c2*pixel%>px" style="background-color:transparent"></td>
+	<td colspan=2 width="<%=c3*pixel%>px" style="background-color:transparent" valign=top>
+		<input type="text" size=6 class="help_input" value="2,54" tabindex=3 name="alturaetiqueta"></td>
+	<td colspan=5 width="<%=c5*pixel%>px" style="background-color:transparent"></td>
+	<td colspan=2 width="<%=c12*pixel%>px" style="background-color:transparent"></td>
+</tr>
+<tr>
+	<td height="<%=l5*pixel%>px" width="<%=c1*pixel%>px" style="background-color:transparent"></td>
+	<td colspan=11 width="<%=c2*pixel%>px" style="background-color:transparent"></td>
+	<td rowspan=2 width="<%=c13*pixel%>px" style="background-color:transparent" valign=top>
+		<input type="text" size=6 class="help_input" value="0,4" tabindex=9 name="margemdireita"></td>
+</tr>
+<tr>
+	<td height="<%=l6*pixel%>px" width="<%=c1*pixel%>px" style="background-color:transparent"></td>
+	<td colspan=3 width="<%=c2*pixel%>px" style="background-color:transparent"></td>
+	<td colspan=2 rowspan=2 width="<%=c5*pixel%>px" style="background-color:transparent" valign=top>
+		<input type="text" size=6 class="help_input" value="6,67" tabindex=4 name="larguraetiqueta"></td>
+	<td colspan=6 width="<%=c7*pixel%>px" style="background-color:transparent"></td>
+</tr>
+<tr>
+	<td height="<%=l7*pixel%>px" width="<%=c1*pixel%>px" style="background-color:transparent"></td>
+	<td colspan=3 width="<%=c2*pixel%>px" style="background-color:transparent"></td>
+	<td width="<%=c7*pixel%>px" style="background-color:transparent"></td>
+	<td colspan=2 rowspan=3 width="<%=c8*pixel%>px" style="background-color:transparent" valign=top>
+		<input type="text" size=6 class="help_input" value="0,2" tabindex=7 name="margemesquerdaimpressao"></td>
+	<td colspan=4 width="<%=c10*pixel%>px" style="background-color:transparent"></td>
+</tr>
+<tr>
+	<td height="<%=l8*pixel%>px" width="<%=c1*pixel%>px" style="background-color:transparent"></td>
+	<td rowspan=2 width="<%=c2*pixel%>px" style="background-color:transparent" valign=top>
+		<input type="text" size=6 class="help_input" value="0,4" tabindex=2 name="marqemesquerda"></td>
+	<td colspan=5 width="<%=c3*pixel%>px" style="background-color:transparent"></td>
+	<td colspan=4 width="<%=c10*pixel%>px" style="background-color:transparent"></td>
+</tr>
+<tr>
+	<td height="<%=l9*pixel%>px" width="<%=c1*pixel%>px" style="background-color:transparent"></td>
+	<td colspan=5 width="<%=c3*pixel%>px" style="background-color:transparent"></td>
+	<td width="<%=c10*pixel%>px" style="background-color:transparent"></td>
+	<td colspan=3 width="<%=c11*pixel%>px" style="background-color:transparent" valign=top>
+		<input type="text" size=6 class="help_input" value="0" tabindex=8 name="espacolinha"></td>
+</tr>
+<tr>
+	<td height="<%=l10*pixel%>px" width="<%=c1*pixel%>px" style="background-color:transparent"></td>
+	<td colspan=5 width="<%=c2*pixel%>px" style="background-color:transparent"></td>
+	<td colspan=2 width="<%=c7*pixel%>px" style="background-color:transparent" valign=top>
+		<input type="text" size=6 class="help_input" value="0,3" tabindex=5 name="espacocoluna"></td>
+	<td colspan=5 width="<%=c9*pixel%>px" style="background-color:transparent"></td>
+</tr>
+</table>
+<table border="0" bordercolor="#cccccc" cellpadding="2" cellspacing="0" style="border-collapse: collapse" width=500>
+<tr>
+	<td class=titulo colspan=3>
+	<input type="submit" class=button value="Continuar" name="E1">
+	</td>
+</tr>
+</table>
+</form>
+<%
+end if 'e1="" and e2=""
+
+if request.form("E1")<>"" and (request.form("E2")="" or request.form("s1")<>"") then 
+vlinha=13
+session("querytexto")=request.form("textosql")
+%>
+<form method="POST" action="etiqueta.asp" name="form2">
+<p class=titulo>Gerador de Etiquetas - Etapa 2/</p>
+<%
+sqls="select id_etiq, descricao, sqltexto from etiqueta_query order by descricao"
+rs.Open sqls, ,adOpenStatic, adLockReadOnly
+%>
+<table border="0" bordercolor="#cccccc" cellpadding="2" cellspacing="0" style="border-collapse: collapse" width=500>
+<tr><td class=campo valign=top>
+<select name="id_etiq" size="10" onchange="library1()">
+	<option value=0>Selecione uma query</option>
+<%
+rs.movefirst:do while not rs.eof
+if rs("sqltexto")=request.form("id_etiq") then temp1="selected" else temp1=""
+%>	
+	<option value="<%=rs("sqltexto")%>" <%=temp1%> ><%=rs("descricao")%></option>
+<%
+rs.movenext:loop
+rs.close
+%>
+</select>
+</td><td class=campo valign=top>
+<textarea rows="<%=vlinha%>" class="p" name="textosql" cols="100"><%=session("querytexto")%></textarea>
+</td></tr></table>
+
+<p style="margin-top: 0; margin-bottom: 0"><input type="submit" value="Visualizar" name="S1" class=button></p>
+
+<table border="0" bordercolor="#cccccc" cellpadding="2" cellspacing="0" style="border-collapse: collapse" width=500>
+
+<%
+if request.form("s1")<>"" then
+	set rsquery=server.createobject ("ADODB.Recordset")
+	set rsquery.ActiveConnection = conexao
+	sql=request.form("textosql")
+	session("querytexto")=sql
+	rsquery.Open sql, ,adOpenStatic
+	if not rsquery.eof then
+		response.write "<table border='1' bordercolor='#CCCCCC' width='100%' cellpadding='0' cellspacing='0' style='border-collapse: collapse'><tr>"
+		for x=0 to rsquery.fields.count-1
+			response.write "<td class=titulor>" & rsquery.fields(x).name & "</td>"
+		next
+		response.write "</tr>"
+		rsquery.movefirst
+		registro=0
+		do while not rsquery.eof
+			response.write "<tr>"
+			for x=0 to rsquery.fields.count-1
+				response.write "<td class=campor>" 
+				if rsquery.fields(x).value="" or isnull(rsquery.fields(x).value) then response.write "&nbsp;" else response.write rsquery.fields(x).value 
+				'response.write rsquery.fields(x).value 
+				response.write "</td>"
+			next
+			response.write "</tr>"
+			rsquery.movenext
+			registro=registro+1
+		loop
+		response.write "<tr><td class=grupo colspan="&rsquery.fields.count&">"&registro&" registros </td></tr>"
+		response.write "</table>"
+	else
+		response.write "<p class=realce>Sem registros"
+	end if
+	rsquery.close
+	set rsquery=nothing
+end if 'request s1
+
+%>
+</form>
+
+<%
+end if ' e1<>"" and e2=""
+
+if request.form("E1")<>"" and request.form("E2")<>"" then
+pixel=96/2.54
+point=72/2.54
+pointp=72.27/2.54
+sql=""
+'rs.Open sql, ,adOpenStatic, adLockReadOnly
+
+sentido=request.form("sentido")           'R
+colunas=request.form("colunas")           '3
+linhas =request.form("linhas")            '10
+msup   =request.form("margemsuperior")    '1,27
+mdir   =request.form("margemdireita")     '0,4
+mesq   =request.form("marqemesquerda")    '0,4
+altura =request.form("alturaetiqueta")    '2,54
+largura=request.form("larguraetiqueta")   '6,67
+espacol=request.form("espacolinha")       '0
+espacoc=request.form("espacocoluna")      '0,3
+msupimp=request.form("margemsuperiorimpressao") '0,2
+mesqimp=request.form("margemesquerdaimpressao") '0,2
+
+response.write "<table border='1' bordercolor='#000000' cellpadding='0' cellspacing='0' style='border-collapse: collapse'>"
+for l=1 to linhas
+	response.write "<tr>"
+	for c=1 to colunas
+%>
+	<td width='<%=largura*pixel%>px' height='<%=altura*pixel%>px' valign=top>
+	<font style="color:gray">TESTE 2 NOME<BR>TESTE 2 ENDEREÇO
+	</td>
+<%	
+	if cint(c)<cint(colunas) then
+%>
+		<td width='<%=espacoc*pixel%>px'>&nbsp;</td>
+<%
+	end if
+	next
+	response.write "</tr>"
+next
+response.write "</table>"
+
+end if 'e1<>"" and e2<>""
+
+set rs=nothing
+conexao.close
+set conexao=nothing
+%>
+</body>
+</html>
