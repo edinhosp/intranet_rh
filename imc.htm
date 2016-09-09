@@ -1,0 +1,154 @@
+
+      <p><font size="4" face="Lucida Handwriting" color="#008000"><b><font face="Lucida Handwriting, Verdana, Arial">Calcule 
+        seu &Igrave;ndice de Massa Corp&oacute;rea</font></b></font></p>
+      <p align="center"> <font color="#000000"><b><font size="4"><font face="Arial, Helvetica, sans-serif" size="2">Instruções</font></font><font size="2" face="Arial, Helvetica, sans-serif">:</font></b></font><font color="#666666" size="2" face="Arial, Helvetica, sans-serif"> 
+        Digite o seu peso em quilos. Caso você pese <b>60 quilos e 500 gramas</b> 
+        digite <b>60.5 <font color="#FF3366">(use sempre o ponto)</font>. </b>Depois 
+        digite sua altura em centímetros. Exemplo: Se você mede <b>1,54</b> m 
+        digite <b>154</b> no 2º campo. Aperte o <b>&quot;Calcular&quot;</b>. </font> 
+      <p align="center">&nbsp;
+<script language="JAVASCRIPT">
+<!-- início
+
+function ClearForm(form){
+
+    form.peso.value = "";
+    form.altura.value = "";
+    form.imc.value = "";
+    form.resultado.value = "";
+    form.minimo.value = "";
+    form.maximo.value = "";	 	
+}
+
+function imc(peso, altura) {
+
+          imcndx=peso/eval(altura*altura);
+          return imcndx;
+}		
+
+function checkform(form) {
+
+       if (form.peso.value==null||form.peso.value.length==0 || form.altura.value==null||form.altura.value.length==0){
+            alert("\nPor favor, complete o formulário");
+            return false;
+       }
+
+       else if (parseFloat(form.altura.value) <= 0||
+                parseFloat(form.altura.value) >=300||
+                parseFloat(form.peso.value) <= 0||
+                parseFloat(form.peso.value) >=500){
+                alert("\nTem certeza que esse é o valor correto? \nPor favor confira os valores digitados. \nPeso em quilos e \nAltura em centímetros");
+                ClearForm(form);
+                return false;
+       }
+       return true;
+
+}
+
+function computeform(form) {
+
+       if (checkform(form)) {
+
+       seuimc=Math.round(imc(form.peso.value, form.altura.value/1000))/100;
+       form.imc.value=seuimc;
+	 minimc=Math.round(((form.altura.value*form.altura.value)*20)/100)/100;
+	 maximc=Math.round(((form.altura.value*form.altura.value)*25)/100)/100;
+
+       if (seuimc >40) {
+          form.resultado.value="Obesidade mórbida";
+          form.minimo.value=minimc; 
+          form.maximo.value=maximc; 
+      }
+
+       else if (seuimc >=30 && seuimc <=40) {
+          form.resultado.value="Obesidade moderada";
+          form.minimo.value=minimc; 
+          form.maximo.value=maximc; 
+       }
+
+       else if (seuimc >=25 && seuimc <30) {
+          form.resultado.value="Sobrepeso";
+          form.minimo.value=minimc; 
+          form.maximo.value=maximc; 
+       }
+
+       else if (seuimc >=20 && seuimc <25) {
+          form.resultado.value="Normal";
+          form.minimo.value=minimc; 
+          form.maximo.value=maximc; 
+       }
+
+       else if (seuimc <20) {
+          form.resultado.value="Baixo peso";
+          form.minimo.value=minimc; 
+          form.maximo.value=maximc; 
+       }
+
+       }
+       return;
+}
+ // -- fim  -->
+</script>
+<div align="center">
+  <center>
+    <table border="0" width="400">
+    <tr>
+        <td align="center"><form method="POST" name="imc">
+            <div align="center"><center><table border="0"
+            cellspacing="0" width="400">
+                <tr>
+                    <td align="right" width="220"><font
+                    color="#FF0000" size="2" face="Verdana"><strong>Digite
+                    seu peso (em kg)</strong></font></td>
+                    <td width="180"><font color="#800040"
+                    face="Verdana"><input type="text" size="3"
+                    name="peso" onfocus="this.form.peso.value=''"></font></td>
+                </tr>
+                <tr>
+                    <td align="right" width="220"><font
+                    color="#FF0000" size="2" face="Verdana"><strong>Digite
+                    sua altura (em cm)</strong></font></td>
+                    <td width="180"><font color="#800040"
+                    face="Verdana"><input type="text" size="3"
+                    name="altura"
+                    onfocus="this.form.altura.value=''"></font></td>
+                </tr>
+                <tr>
+                    <td align="right" width="220"><font
+                    color="#800040" size="2" face="Verdana"><strong>Seu
+                    IMC</strong></font></td>
+                    <td width="180"><font color="#800040"
+                    face="Verdana"><input type="text" size="6"
+                    name="imc"></font></td>
+                </tr>
+                <tr>
+                    <td align="right" width="220"><font
+                    color="#800040" size="2" face="Verdana"><strong>Resultado</strong></font></td>
+                    <td width="180"><font color="#800040"
+                    face="Verdana"><input type="text" size="20"
+                    name="resultado"></font></td>
+                </tr>
+                <tr>
+                    <td align="right" width="220"><font
+                    color="#800040" size="2" face="Verdana"><strong>Seu
+                    peso tem de estar entre</strong></font></td>
+                    <td width="180"><font color="#800040"
+                    face="Verdana"><input type="text" size="4"
+                    name="minimo"> </font><font color="#804040"
+                    size="2" face="Verdana"><strong>e <input
+                    type="text" size="4" name="maximo"> kgs</strong></font></td>
+                </tr>
+                <tr>
+                    <td align="right" width="220"><input
+                    type="button" value="Calcular"
+                    onclick="computeform(this.form)"> </td>
+                    <td width="180"><input type="reset"
+                    value="Limpa" onclick="ClearForm(this.form)"></td>
+                </tr>
+            </table>
+            </center></div>
+        </form>
+        </td>
+    </tr>
+</table>
+</center></div>

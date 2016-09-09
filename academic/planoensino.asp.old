@@ -1,0 +1,186 @@
+<%@ Language=VBScript %>
+<!-- #Include file="../adovbs.inc" -->
+<!-- #Include file="../funcoes.inc" -->
+<%
+	Response.buffer=false
+	Server.ScriptTimeout = 600
+if Session("UsuarioMaster")="" then response.write "<script language='JavaScript' type='text/javascript'>window.top.location.href='" & Application("Site") & "';</script>"
+if session("a93")="N" or session("a93")="" then response.write "<script language='JavaScript' type='text/javascript'>window.top.location.href='" & Application("Site") & "';</script>"
+%>
+<html>
+<head>
+<meta http-equiv="CONTENT-TYPE" content="text/html; charset=windows-1252">
+<title>Plano de Ensino</title>
+<script language="javascript" type="text/javascript">
+<!--
+/****************************************************
+     Author: Eric King
+     Url: http://redrival.com/eak/index.shtml
+     This script is free to use as long as this info is left in
+     Featured on Dynamic Drive script library (http://www.dynamicdrive.com)
+****************************************************/
+var win=null;
+function NewWindow(mypage,myname,w,h,scroll,pos){
+if(pos=="random"){LeftPosition=(screen.width)?Math.floor(Math.random()*(screen.width-w)):100;TopPosition=(screen.height)?Math.floor(Math.random()*((screen.height-h)-75)):100;}
+if(pos=="center"){LeftPosition=(screen.width)?(screen.width-w)/2:100;TopPosition=(screen.height)?(screen.height-h)/2:100;}
+else if((pos!="center" && pos!="random") || pos==null){LeftPosition=0;TopPosition=20}
+settings='width='+w+',height='+h+',top='+TopPosition+',left='+LeftPosition+',scrollbars='+scroll+',location=no,directories=no,status=yes,menubar=no,toolbar=no,resizable=no';
+win=window.open(mypage,myname,settings);}
+// -->
+</script>
+<link rel="stylesheet" type="text/css" href="../<%=session("estilo")%>">
+</head>
+<body>
+<%
+dim conexao, conexao2, chapach, rs, rs2
+set conexao=server.createobject ("ADODB.Connection")
+conexao.Open application("conexao")
+set rs=server.createobject ("ADODB.Recordset")
+Set rs.ActiveConnection = conexao
+set rsc=server.createobject ("ADODB.Recordset")
+Set rsc.ActiveConnection = conexao
+set rs2=server.createobject ("ADODB.Recordset")
+Set rs2.ActiveConnection = conexao
+'response.write "request.form " & request.form("codcur")
+'response.write "<br>session " & session("pecodcur")
+if request.form("codcur")<>"" then 
+	codcur=request.form("codcur"):session("pecodcur")=request.form("codcur") 
+	gc=request.form("gc"):session("pegc")=request.form("gc")
+else 
+	codcur=session("pecodcur")
+	gc=session("pegc")
+end if
+%>
+<p style="margin-top:0;margin-bottom:0" class=titulo>Plano de Ensino para&nbsp;<%=nomeacao%></p>
+<table border="0" cellpadding="2" cellspacing="0" style="border-collapse: collapse">
+<form method="POST" action="planoensino.asp" name="form">
+<tr>
+	<td class=titulo>Curso da Graduação</td>
+	<td class=titulo><select size="1" name="codcur" onChange="javascript:submit()">
+	<option value="0" selected>Selecione um curso</option>
+<%
+sqla="select curso, coddoc from grades_2 group by curso, coddoc having coddoc in (select coddoc from grades_user where usuario='" & session("usuariomaster") & "')"
+rs.Open sqla, ,adOpenStatic, adLockReadOnly
+rs.movefirst:do while not rs.eof 
+%>
+<option <%if codcur=rs("coddoc") then response.write "selected "%> value="<%=rs("coddoc")%>"><%=rs("curso")%></option>
+<%
+rs.movenext:loop
+rs.close
+%>  
+	</select>
+	</td>
+	<td class=titulo>Grade</td>
+	<td class=titulo><select size="1" name="gc" onChange="javascript:submit()">
+	<option value="0" selected>Selecione uma grade</option>
+<%
+sqla="select gc from grades_per where coddoc='" & codcur & "' group by gc "
+response.write sqla
+rs.Open sqla, ,adOpenStatic, adLockReadOnly
+rs.movefirst:do while not rs.eof 
+%>
+<option <%if gc=rs("gc") then response.write "selected "%> value="<%=rs("gc")%>"><%=rs("gc")%></option>
+<%
+rs.movenext:loop
+rs.close
+%>  
+	</select>
+	
+	</td>
+</tr>
+</form>
+</table>
+
+<%
+if (request.form("codcur")<>"" or session("pecodcur")>"0") and (request.form("gc")<>"" or session("pegc")<>"") then
+%>
+<table border="1" bordercolor="#000000" cellpadding="3" cellspacing="0" style="border-collapse: collapse">
+<tr>
+	<td class=titulo>G.C.</td>
+	<td class=titulo>Período</td>
+	<td class=titulo>Disciplina</td>
+	<td class=titulo>CH Sem.</td>
+	<td class=titulo>CH Total</td>
+	<td class=titulo>&nbsp;</td>
+</tr>
+<%
+sql="select coddoc,curso,gc,serie, codmat,materia,naulassem,cargahoraria from grades_materias " & _
+"where coddoc='" & codcur & "' and gc='" & gc & "' order by gc,serie,codmat "
+rs.Open sql, ,adOpenStatic, adLockReadOnly
+if rs.recordcount>0 then
+rs.movefirst:do while not rs.eof
+barra1=""
+%>
+<tr>
+<%
+if lastgc<>rs("gc") then
+	sqlg="select count(gc) as linhas from grades_materias where coddoc='" & codcur & "' and gc='" & rs("gc") & "' "
+	rs2.Open sqlg, ,adOpenStatic, adLockReadOnly
+	lin_gc=rs2("linhas")
+	rs2.close:lastper=""
+	barra1=" style='border-top:2 solid #000000'"
+	response.write "<td class=campop rowspan=" & lin_gc & " align=center style='border-bottom:2 solid #000000;border-top:2 solid #000000'><b>" & rs("gc") & "</td>"
+end if
+if lastper<>rs("serie") then
+	sqlg="select count(serie) as linhas from grades_materias where coddoc='" & codcur & "' and gc='" & rs("gc") & "' and serie=" & rs("serie")
+	rs2.Open sqlg, ,adOpenStatic, adLockReadOnly
+	lin_per=rs2("linhas")
+	rs2.close
+	barra1=" style='border-top:2 solid #000000'"
+	response.write "<td class=campop rowspan=" & lin_per & " align=center style='border-bottom:2 solid #000000;border-top:2 solid #000000'><b>" & rs("serie") & "</td>"
+end if
+sqlc="select codmat, pa from grades_planoensino where codmat='" & rs("codmat") & "' "
+rs2.Open sqlc, ,adOpenStatic, adLockReadOnly
+%>
+	<td class=campo <%=barra1%> >
+<%if rs2.recordcount>0 then%>
+	<a class=r href="plano_ensino.asp?codigo=<%=rs("codmat")%>" onclick="NewWindow(this.href,'form_pe','695','450','yes','center');return false" onfocus="this.blur()">
+	<%=rs("codmat")%> - <%=rs("materia")%></a>
+<%else%>
+	<%=rs("codmat")%> - <%=rs("materia")%>
+<%end if%>
+	</td>
+	<td class=campo align=center <%=barra1%> ><%=rs("naulassem")%></td>
+	<td class=campo align=center <%=barra1%> ><%=rs("cargahoraria")%></td>
+<%
+if rs2.recordcount=0 then
+%>
+	<td class=campo align=center <%=barra1%> >&nbsp;
+<a href="plano_novo.asp?codigo=<%=rs("codmat")%>" onclick="NewWindow(this.href,'planoensino_novo','635','500','yes','center');return false" onfocus="this.blur()">
+<img src="../images/novo.gif"  border="0" alt=""></a>
+	</td>
+<%
+else
+if rs2("pa")=-1 then classe="campov" else classe="campol"
+%>
+	<td class=<%=classe%> align=center <%=barra1%> >&nbsp;
+<%if rs2("pa")=0 or (rs2("pa")=-1 and session("a93")="T") then%>	
+<a href="plano_alteracao.asp?codigo=<%=rs("codmat")%>" onclick="NewWindow(this.href,'planoensino_altera','635','500','yes','center');return false" onfocus="this.blur()">
+<img src="../images/write.gif" border="0" alt=""></a>
+<%end if%>
+	</td>
+<%
+end if
+rs2.close
+%>
+</tr>
+<%
+lastgc=rs("gc")
+lastper=rs("serie")
+rs.movenext:loop
+end if 'rs.recordcount>0
+rs.close
+%>
+</table>
+<%
+end if 'request.form("codcur")<>""
+%>
+</body>
+</html>
+<%
+set rs=nothing
+set rs2=nothing
+set rsc=nothing
+conexao.close
+set conexao=nothing
+%>

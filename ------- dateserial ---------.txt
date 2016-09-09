@@ -1,0 +1,9 @@
+convert(char,year(data_acerto))+'/'+convert(char,month(data_acerto))+'/01'
+
+/* 
+tempo=convert(varchar,datediff(yy,f.dataadmissao,getdate())) + 'A '
+campus=case substring(codsecao,1,2) when '01' then 'Narciso' when '03' then 'V.Yara' when '04' then 'Jd.Wilson' end
+tipo=case when codtipo='T' then 'Estagiário' else case when codsindicato='03' then 'Professor' else 'Administrativo' end end
+*/
+
+ --if exists (select 'True' from sysobjects where name='celina1') drop table celina1

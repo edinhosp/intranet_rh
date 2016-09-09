@@ -1,0 +1,59 @@
+<script language="JavaScript"> <!--
+// Verifica se campos obrigatorios do formulario foram preenchidos
+function submit_page(form) {
+
+	// Verifica se campos obrigatorios foram prenchidos
+
+	if(CampoBranco(form.assunto) == true) {
+    	alert("Você esqueceu o assunto.");
+   		form.assunto.focus();
+    	return false;
+	}
+
+	if(CampoBranco(form.mensagem) == true) {
+    	alert("Você esqueceu o corpo da mensagem.");
+   		form.mensagem.focus();
+    	return false;
+	}
+} // fim da função submit_page()
+// Verifica se campo preenchido
+function CampoBranco(campo) {
+	if(campo.value == "")
+		return true;
+	else
+		return false;
+}
+--></script>
+
+<script language="JavaScript" type="text/javascript" src="../date.js"></script>
+
+<script language="JavaScript" type="text/javascript"> <!--
+/***** script montado por Edson Benevides
+Unifieo - 10/12/2004 *******************/
+var montharray=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")
+
+function nome1() {	form.chapa.value=form.nome.value;	}
+function chapa1() {	form.nome.value=form.chapa.value;	}
+function mand_ini1(muda) {
+	temp=form.mand_ini.value;
+	inicio=new Date(temp.substr(6),temp.substr(3,2)-1,temp.substr(0,2));
+	hoje=new Date();
+	hoje.setDate(1);hoje.toLocaleString();
+	fpgini="0" + hoje.getDate() + "/" + ((hoje.getMonth()+1)<10?"0":"") + (hoje.getMonth()+1) + "/" + hoje.getFullYear();
+	//form.fpg_ini.value=fpgini;
+	if (muda==1) { temp2=form.fpg_ini.value; hoje=new Date(temp2.substr(6),temp2.substr(3,2)-1,1); }
+	dinicio=montharray[inicio.getMonth()]+" "+inicio.getDate()+", "+inicio.getFullYear()
+	dmesfp=montharray[hoje.getMonth()]+" "+hoje.getDate()+", "+hoje.getFullYear()
+	dias=(Math.round((Date.parse(dmesfp)-Date.parse(dinicio))/(24*60*60*1000))*1)
+	semanas=Math.round(dias/7)
+	dmesini=montharray[inicio.getMonth()]+" 1, "+inicio.getFullYear()
+	if (dmesfp!=dmesini) {
+		if (muda==0) { document.form.fpg_ini.value=fpgini }
+		horas=document.form.ch.value
+		document.form.complemento.value=horas*semanas
+	} else {
+		document.form.complemento.value=0
+		if (muda==0) { document.form.fpg_ini.value=temp }
+	}		
+}
+--></script>

@@ -1,0 +1,18 @@
+td { font-size:10pt; font-family:Arial; font-weight:normal; background-color:White; }
+
+td.rtitulo1 { height:13.2pt; font-size:13pt; font-family:Arial; font-weight:normal; background:Silver; color:Black;   }
+td.rtitulo2 { height:9.9pt; font-size:9pt; font-family:Arial; font-weight:normal; background:Silver; color:Black;   }
+td.rcampo1 { height:17.9pt; font-size:6pt; font-family:Arial; font-weight:normal; background:White; font-size-adjust:inherit; font-stretch:inherit; vertical-align:top }
+.campo1 { font-size:10pt; font-family:Arial; font-weight:normal; }
+td.rcampo2 { height:29.6pt; font-size:6pt; font-family:Arial; font-weight:normal; background:White; font-size-adjust:inherit; font-stretch:inherit; vertical-align:top }
+td.rtitulo3 { height:9.9pt; font-size:9pt; font-family:Arial; font-weight:normal; background:White; color:Black;   }
+td.rcampo3 { height:15.1pt; font-size:6pt; font-family:Arial; font-weight:normal; background:White; font-size-adjust:inherit; font-stretch:inherit; vertical-align:middle }
+td.rcampo4 { height:15.1pt; font-size:9pt; font-family:Arial; font-weight:normal; background:White; font-size-adjust:inherit; font-stretch:inherit; vertical-align:top }
+td.rcampo { font-size:8pt; font-family:Arial; font-weight:normal; background:White; color:Black;   }
+td.rtitulo4 { height:35.9pt; font-size:9pt; font-family:Arial; font-weight:normal; background:Silver; color:Black;   }
+td.rrodape1 { height:202.1pt; font-size:6pt; font-family:Arial; font-weight:normal; background:White; font-size-adjust:inherit; font-stretch:inherit; vertical-align:top }
+td.rrodape2 { height:11.8pt; font-size:6pt; font-family:Arial; font-weight:normal; background:White; font-size-adjust:inherit; font-stretch:inherit; vertical-align:top }
+
+.r_input3 { font-family:Arial; font-size:6pt; color:black; border:0px transparent; background-color:white; }
+.r_input4 { font-family:Arial; font-size:9pt; color:black; border:0px transparent; background-color:white; }
+

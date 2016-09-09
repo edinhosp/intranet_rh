@@ -1,0 +1,771 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Tab Content documentation and examples</title>
+<link rel="stylesheet" type="text/css" href="../ddincludes/mainstyle.css" />
+
+<link rel="stylesheet" type="text/css" href="tabcontent/tabcontent.css" />
+
+<script type="text/javascript" src="tabcontent/tabcontent.js">
+
+/***********************************************
+* Tab Content script v2.2- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+* This notice MUST stay intact for legal use
+* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+***********************************************/
+
+</script>
+
+
+<style type="text/css">
+
+/*Credits: Dynamic Drive CSS Library */
+/*URL: http://www.dynamicdrive.com/style/ */
+
+.invertedshiftdown{
+padding: 0;
+width: 362px;
+border-top: 5px solid #D10000; /*Red color theme*/
+background: transparent;
+voice-family: "\"}\"";
+voice-family: inherit;
+}
+
+.invertedshiftdown ul{
+margin:0;
+margin-left: 40px; /*margin between first menu item and left browser edge*/
+padding: 0;
+list-style: none;
+}
+
+.invertedshiftdown li{
+display: inline;
+margin: 0 2px 0 0;
+padding: 0;
+text-transform:uppercase;
+}
+
+.invertedshiftdown a{
+float: left;
+display: block;
+font: bold 12px Arial;
+color: black;
+text-decoration: none;
+margin: 0 1px 0 0; /*Margin between each menu item*/
+padding: 5px 10px 9px 10px; /*Padding within each menu item*/
+background-color: white; /*Default menu color*/
+
+/*BELOW 4 LINES add rounded bottom corners to each menu item.
+  ONLY WORKS IN FIREFOX AND FUTURE CSS3 CAPABLE BROWSERS
+  REMOVE IF DESIRED*/
+-moz-border-radius-bottomleft: 5px;
+border-bottom-left-radius: 5px;
+-moz-border-radius-bottomright: 5px;
+border-bottom-right-radius: 5px;
+}
+
+.invertedshiftdown a:hover{
+background-color: #D10000; /*Red color theme*/
+padding-top: 9px; /*Flip default padding-top value with padding-bottom */
+padding-bottom: 5px; /*Flip default padding-bottom value with padding-top*/
+color: white;
+}
+
+.invertedshiftdown .selected a{ /** currently selected menu item **/
+background-color: #D10000; /*Red color theme*/
+padding-top: 9px; /*Flip default padding-top value with padding-bottom */
+padding-bottom: 5px; /*Flip default padding-bottom value with padding-top*/
+color: white;
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+<div id="toprightdiv">
+
+<div id="toprightdivbox">
+
+<form id="topform" method="get" action="http://www.dynamicdrive.com/cgi-bin/search/search.cgi">
+<input type="text" name="zoom_query" id="zoom_query" size="20" class="zoom_searchbox topsearchbox" /> 
+<input type="submit" value="Submit" class="zoom_button topformbutton" />
+<input name="zoom_per_page" id="zoom_per_page" type="hidden" value="10" />
+<input name="zoom_and" id="zoom_and" type="hidden" value="1" />
+<input type="hidden" name="zoom_sort" value="0" />
+</form>
+
+<div style="margin-top: 3px"><a href="http://www.dynamicdrive.com/submitscript.htm">Submit</a> <a href="http://www.dynamicdrive.com/faqs.htm">FAQs</a> <a href="http://www.dynamicdrive.com/award/">Awards</a> <a href="http://www.dynamicdrive.com/notice.htm">Usage Terms</a> <a href="http://www.dynamicdrive.com/contact.htm">Contact</a></div>
+
+</div>
+
+</div>
+
+<a href="http://www.dynamicdrive.com" title="Dynamic Drive- Award winning DHTML and JavaScript"><img src="http://www.dynamicdrive.com/ddincludes/logo.gif" border="0" /></a>
+
+	<div id="ddtoptabs">
+		<ul>
+			<li style="margin-left: 1px"><a href="http://www.dynamicdrive.com" title="Home"><span>Home</span></a></li>
+			<li><a href="http://www.dynamicdrive.com/new.htm" title="New"><span>New</span></a></li>
+			<li><a href="http://www.dynamicdrive.com/revised.htm" title="Revised"><span>Revised</span></a></li>
+			<li><a href="http://tools.dynamicdrive.com" title="Tools"><span>Tools</span></a></li>	
+			<li><a href="http://www.dynamicdrive.com/forums/" title="DHTML Forums"><span>Forums</span></a></li>
+			<li id="csslibrarytab"><a href="http://www.dynamicdrive.com/style/" title="CSS Library"><span>CSS Library</span></a></li>	
+		</ul>
+	</div>
+
+
+	<div id="ddtoptabsline"><img src="http://www.dynamicdrive.com/spacer.gif" /></div>
+
+<center><script type="text/javascript" src="http://www.dynamicdrive.com/ddincludes/adbanner.js"></script></center>
+
+<p id="pathlinks"><a href="http://www.dynamicdrive.com/">Home</a> 
+<img border="0" src="../ddincludes/arrow2.gif" width="8" height="10" />                                                        
+<a href="http://www.dynamicdrive.com/dynamicindex17/">Dynamic Content</a> 
+<img border="0" src="../ddincludes/arrow2.gif" width="8" height="10" /> 
+<a href="tabcontent.htm">Tab Content script</a> 
+<img border="0" src="../ddincludes/arrow2.gif" width="8" height="10" /> 
+Supplementary Page</p>
+
+<table id="maintable" border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td id="leftbar" valign="top">
+			<div class="headers">Categories</div>
+			<ul class="categorylinks">
+				<li id="c7"><a href="http://www.dynamicdrive.com/dynamicindex7/" >Calendars</a></li>
+				<li id="c6"><a href="http://www.dynamicdrive.com/dynamicindex6/">Date &amp; Time</a></li>
+				<li id="c3"><a href="http://www.dynamicdrive.com/dynamicindex3/">Document Effects</a></li>
+				<li id="c17"><a href="http://www.dynamicdrive.com/dynamicindex17/">Dynamic Content</a></li>
+				<li id="c16"><a href="http://www.dynamicdrive.com/dynamicindex16/">Form Effects</a></li>
+				<li id="c12"><a href="http://www.dynamicdrive.com/dynamicindex12/">Games</a></li>
+				<li id="c4"><a href="http://www.dynamicdrive.com/dynamicindex4/">Image Effects</a></li>		
+				<li id="c5"><a href="http://www.dynamicdrive.com/dynamicindex5/">Links &amp; Tooltips</a></li>			
+				<li id="c1"><a href="http://www.dynamicdrive.com/dynamicindex1/">Menus &amp; Navigation</a></li>
+				<li id="c13"><a href="http://www.dynamicdrive.com/dynamicindex13/">Mouse and Cursor</a></li>			
+				<li id="c2"><a href="http://www.dynamicdrive.com/dynamicindex2/">Scrollers</a></li>
+				<li id="c10"><a href="http://www.dynamicdrive.com/dynamicindex10/">Text Animations</a></li>
+				<li id="c9"><a href="http://www.dynamicdrive.com/dynamicindex9/">User/System Preference</a></li>
+				<li id="c8"><a href="http://www.dynamicdrive.com/dynamicindex8/">Window and Frames</a></li>
+				<li id="c11"><a href="http://www.dynamicdrive.com/dynamicindex11/">Other</a></li>
+				<li id="c18"><a href="http://www.dynamicdrive.com/dynamicindex18/">XML and RSS</a></li>
+			</ul>
+
+
+
+			<div class="headers">Partners</div>
+			<div style="margin: 8px 0 0 2px">
+			<div><a href="http://www.daniweb.com/forums/forum31.html" target="_partner" style="color: #449805; font-weight:bold">DaniWeb Web Dev Community</a></div>
+			<div>DaniWeb is an exciting community for web developers, Internet marketers, and technology enthusiasts.</div>
+			<div style="margin: 10px 0; text-align: center"><a href="http://www.daniweb.com/forums/forum31.html" target="_partner"><img src="http://www.dynamicdrive.com/daniweb.gif" style="width:125px; height:24px; border:0;" title="Daniweb" /></a></div>
+			</div>
+
+
+			<div class="headers" style="clear:both">Other Sections</div>
+			<ul class="categorylinks diffpointer">
+				<li><a href="http://www.dynamicdrive.com/forums/">Script Forums</a></li>
+				<li><a href="http://www.dynamicdrive.com/recommendit/">Recommend Us</a></li>
+				<li><a href="http://www.dynamicdrive.com/notice.htm">Usage Terms</a></li>
+				<li><a href="http://www.javascriptkit.com">Free JavaScripts</a></li>		
+			</ul>
+
+<div class="headers" style="margin: 8px 0;">Sweet Ads</div>
+
+<div style="text-align:center">
+
+<script type="text/javascript">
+Vertical1437 = false;
+ShowAdHereBanner1437 = false;
+RepeatAll1437 = false;
+NoFollowAll1437 = false;
+BannerStyles1437 = new Array(
+	"a{display:block;font-size:11px;color:#888;font-family:verdana,sans-serif;margin:0 4px 10px 0;text-align:center;text-decoration:none;overflow:hidden;}",
+	"img{border:0;clear:right;}",
+	"a.adhere{color:#666;font-weight:bold;font-size:12px;border:1px solid #ccc;background:#e7e7e7;text-align:center;}",
+	"a.adhere:hover{border:1px solid #999;background:#ddd;color:#333;}"
+);
+
+document.write(unescape("%3Cscript src='"+document.location.protocol+"//s3.buysellads.com/1437/1437.js?v="+Date.parse(new Date())+"' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+</div>
+	
+		
+    <div class="headers">Compatibility</div>
+<ul class="menuitems">
+<li style="border-bottom: 1px solid #ececec;"><b>IE5+:</b> IE 5 and above</li>
+<li style="border-bottom: 1px solid #ececec;"><b>FF1+:</b> Firefox 1.0+. NS6+ and FF beta are 
+  assumed as well.</li>
+<li style="border-bottom: 1px solid #ececec;"><b>Opr7+:</b> Opera 7 and above.</li>
+
+</ul>
+
+<div>
+
+Bookmark <b style="color:navy"><script type="text/javascript">document.write(ddscripttitle)</script></b> online:<br />
+<ul style="margin-top: 5px; font-size: 90%; margin-left: 0; padding-left: 18px"><li><a href="http://www.dynamicdrive.com/bookmark.php?site=deli" onClick="return jsenabledmark('deli')" rel="nofollow">Bookmark</a> to del.icio.us</li>
+<li><a href="http://www.dynamicdrive.com/bookmark.php?site=furl" onClick="return jsenabledmark('furl')" rel="nofollow">Bookmark</a> to Furl.net</li>
+</ul>
+
+</div>
+
+
+<p align="center">
+<!-- AddThis Button BEGIN -->
+<script type="text/javascript">addthis_pub  = 'georgeuser';</script>
+<a href="http://www.addthis.com/bookmark.php" onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()"><img src="http://s9.addthis.com/button2-bm.png" width="160" height="24" border="0" alt="" /></a><script type="text/javascript" src="http://s7.addthis.com/js/152/addthis_widget.js"></script>
+<!-- AddThis Button END -->
+</p>
+
+
+
+    </td>
+    <td id="spacertd">
+<img src="../spacer.gif" id="spacergif">
+    </td>
+    <td valign="top" id="contentarea">
+    
+<script type="text/javascript">
+if (showincontentheader)
+document.write('<div id="topbanner" align="left">'+revised_ranban[ran_num]+'</div>')
+</script>
+
+<h3> <b><!--webbot bot="HTMLMarkup" startspan --><form class="navselectform">
+<select name="example" size="1" onChange="pagenavselect_dd(this)">
+<option value="tabcontent.htm">Script Index Page</option>
+<option value="tabcontent_suppliment.htm" selected="selected">Tab Content documentation plus examples</option>
+</select>
+</form>
+<!--webbot bot="HTMLMarkup" endspan i-checksum="53493" --></b><u>Tab Content documentation and 
+examples</u></h3>
+<p>The below explains all the methods of Tab Content script at your disposal:</p>
+<table cellSpacing="0" cellpadding="3" border="1" width="98%">
+	<caption><b><code>ddtabcontent()</code> constructor function and methods</b></caption>
+	<tr vAlign="top">
+		<th width="35%" bgcolor="#D8EA99">Constructor</th>
+		<th width="65%" bgcolor="#D8EA99">Description</th>
+	</tr>
+	<tr vAlign="top">
+		<td width="35%"><code>new ddtabcontent(tabcontainerID)</code><p><b><i>Required</i></b></td>
+		<td width="65%">Main <code>ddtabcontent()</code> constructor function to 
+		create a new instance of Tab Content script.<p>
+        <b>Parameter:</b></p>
+        <ul>
+          <li><b class="codebg">tabcontainerID</b>: ID of the container that 
+			surrounds your tab links. Typically a <code>DIV</code> or a <code>UL</code> 
+			element.</li>
+        </ul>
+		<p><b>Example:</b></p>
+		<p class="codehighlight">var myflowers=new ddtabcontent(&quot;<font color="#FF0000">flowertabs</font>&quot;)</td>
+	</tr>
+	<tr vAlign="top">
+		<td width="35%" bgcolor="#D8EA99">
+		<p align="center"><b>Method</b></td>
+		<td width="65%" bgcolor="#D8EA99">
+		<p align="center"><b>Description</b></td>
+	</tr>
+	<tr vAlign="top">
+		<td width="35%"><code>instance.setpersist(true/false)</code></td>
+		<td width="65%">Tells the script whether to persist the tabs' state for 
+		the duration of the browser session. If enabled, the last clicked on tab 
+		is remembered and recalled upon the visitor's return.<p>
+        <b>Parameter:</b></p>
+        <ul>
+          <li><b class="codebg">true/false</b>: Boolean value (true or false 
+			without quotes around it!).</li>
+        </ul>
+		</td>
+	</tr>
+	<tr vAlign="top">
+		<td width="35%"><code>instance.setselectedClassTarget(targetstring)</code></td>
+		<td width="65%">Changes the element the script sifts through to locate a
+		<code>class=&quot;selected&quot; </code>declaration (which tells the script to 
+		select that tab by default). By default the script expects the 
+		declaration to be inserted directly inside the tab's link (&quot;<code>A</code>&quot;) 
+		element:<p class="codehighlight">&lt;li&gt;&lt;a href=&quot;#&quot; rel=&quot;tcontent1&quot;&gt;Tab 
+		1&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;#&quot; rel=&quot;tcontent2&quot; <font color="#FF0000">class=&quot;selected&quot;</font>&gt;Tab 
+		2&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;#&quot; rel=&quot;tcontent3&quot;&gt;Tab 3&lt;/a&gt;&lt;/li&gt;</p>
+		<p>If you insert <code>class=&quot;selected&quot;</code> elsewhere in the tab's 
+		hierarchy (ie: the &quot;<code>LI</code>&quot; element instead), the script will no 
+		longer select that tab by default, as it doesn't know to look for the 
+		declaration there.</p>
+		<p>Based on the way your tabs are styled, you may want to 
+		add <code>class=&quot;selected&quot;</code> to the <b>parent</b> container of each 
+		tab link instead. For example, this may be appropriate for the below&nbsp;sample tab links which are each contained in a <code>DIV</code> tag:</p>
+		<p class="codehighlight">&lt;div&gt;&lt;a href=&quot;#&quot; rel=&quot;tcontent1&quot;&gt;Tab 
+		1&lt;/a&gt;&lt;/div&gt;<br>
+		&lt;div <font color="#FF0000">class=&quot;selected&quot;</font>&gt;&lt;a href=&quot;#&quot; 
+		rel=&quot;tcontent2&quot;&gt;Tab 2&lt;/a&gt;&lt;/div&gt;<br>
+		&lt;div&gt;&lt;a href=&quot;#&quot; rel=&quot;tcontent3&quot;&gt;Tab 3&lt;/a&gt;&lt;/div&gt;</p>
+		<p>To inform the script to search each tab's parent container for this 
+		CSS classname, you would invoke:</p>
+		<p class="codehighlight">instance.setselectedClassTarget(&quot;<font color="#FF0000">linkparent</font>&quot;)</p>
+		<p>The two keywords supported for the lone parameter are &quot;<code>link</code>&quot; 
+		or &quot;<code>linkparent</code>&quot;.</p>
+		<p>
+        <b>Parameter:</b></p>
+        <ul>
+          <li><b class="codebg">targetstring</b>: A string with two possible 
+			values: &quot;<code>link</code>&quot; or &quot;<code>linkparent</code>&quot;. The 
+			default is the former, telling the script to look for <code>
+			class=&quot;selected&quot; </code>&nbsp;inside each tab's link itself. The 
+			later tells the script to look for this CSS class in each of the 
+			tab's <b>parent</b> container instead.</li>
+        </ul></td>
+	</tr>
+	<tr vAlign="top">
+		<td width="35%"><code>instance.init(optional_integer)</code><p><b><i>Required</i></b></td>
+		<td width="65%">Call this function at the very end to initialize this 
+		instance of the Tab Content script. You can pass it an optional integer 
+		parameter to put the script into slideshow mode, so the tabs are 
+		automatically rotated when the page loads based on a time interval until 
+		the user clicks on a tab.<p>
+        <b>Parameter:</b></p>
+        <ul>
+          <li><b>optional_integer</b>: An optional parameter that if defined 
+			puts the tabs in slideshow mode (so they auto rotate). The valid 
+			value is an integer in milliseconds (ie: 3000 means 3 seconds), to 
+			set the delay between rotation.</li>
+        </ul>
+		<p><b>Examples:</b></p>
+		<p style="margin-bottom:1em" class="codehighlight">myflowers.init() 
+		//Just start up the script for this tab instance<br>
+		<br>
+		mypets.init(4500) //Auto rotate through the tabs every 4.5 seconds for 
+		this tab instance</td>
+	</tr>
+	<tr vAlign="top">
+		<td width="35%" bgcolor="#D8EA99">
+		<p align="center"><b><a name="pm"></a>Additional method(s)</b></td>
+		<td width="65%" bgcolor="#D8EA99">
+		<p align="center"><b>Description</b></td>
+	</tr>
+	<tr vAlign="top">
+		<td width="35%"><code>instance.expandit(tabid_or_position)</code></td>
+		<td width="65%">This method lets you dynamically select any tab based on 
+		either its ID attribute (you need to first assign one to that tab), or 
+		position relative to its peer tab links. The method can be called 
+		anywhere on the page, such as inside a link on the page.<p>
+        <b>Parameter:</b></p>
+        <ul>
+          <li><b>tabid_or_position</b>: Either a string representing the tab 
+			link's ID, or an integer corresponding to that tab's position 
+			relative to its peers, to select. For the later, the counting starts 
+			at 0 (ie: 0=1st tab).</li>
+        </ul>
+		<p><b>Example:</b></p>
+		<p>Based on the following sample tabs layout:</p>
+		<p class="codehighlight">&lt;ul id=&quot;flowertabs&quot; 
+class=&quot;shadetabs&quot;&gt;<br>
+&lt;li&gt;&lt;a href=&quot;#&quot; rel=&quot;tcontent1&quot; class=&quot;selected&quot;&gt;Tab 
+1&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;#&quot; rel=&quot;tcontent2&quot; 
+		<font color="#FF0000">id=&quot;roses&quot;</font>&gt;Tab 2&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;#&quot; rel=&quot;tcontent3&quot;&gt;Tab 3&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;#&quot; rel=&quot;tcontent4&quot;&gt;Tab 4&lt;/a&gt;&lt;/li&gt;<br>
+&lt;/ul&gt;</p>
+		<p>Here is how to dynamically select two of its tabs anywhere on the 
+		page:</p>
+		<p style="margin-bottom:1em" class="codehighlight">&lt;!--Selects 2nd tab 
+		within Tab instance &quot;myflowers&quot; --&gt;<br>
+		&lt;a href=&quot;javascript:myflowers.expandit(1)&quot;&gt;Select 2nd Tab&lt;/a&gt;<br>
+		<br>
+		&lt;!--Selects tab with ID=&quot;roses&quot; within Tab instance &quot;myflowers&quot; --&gt;<br>
+		&lt;a href=&quot;javascript:myflowers.expandit('roses')&quot;&gt;Select &quot;Roses&quot; tab&lt;/a&gt;</td>
+	</tr>
+	<tr vAlign="top">
+		<td width="35%"><code>instance.cycleit(&quot;next/prev&quot;)</code> 
+		<font color="#FF0000">v2.1 method</font></td>
+		<td width="65%">This method lets you move back or forth between tabs. 
+		It's very useful for creating &quot;Next&quot; and &quot;Previous&quot; pagination links. The method can be called 
+		anywhere on the page, such as inside a link on the page.<p>
+        <b>Parameter:</b></p>
+        <ul>
+          <li><b>&quot;next/prev&quot;</b>: Enter either &quot;<code>next</code>&quot; or &quot;<code>prev</code>&quot; 
+			as its lone parameter.</li>
+        </ul>
+		<p><b>Example:</b></p>
+		<p>Based on the following sample tabs layout:</p>
+		<p class="codehighlight">&lt;ul id=&quot;flowertabs&quot; 
+class=&quot;shadetabs&quot;&gt;<br>
+&lt;li&gt;&lt;a href=&quot;#&quot; rel=&quot;tcontent1&quot; class=&quot;selected&quot;&gt;Tab 
+1&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;#&quot; rel=&quot;tcontent2&quot;&gt;Tab 2&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;#&quot; rel=&quot;tcontent3&quot;&gt;Tab 3&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;#&quot; rel=&quot;tcontent4&quot;&gt;Tab 4&lt;/a&gt;&lt;/li&gt;<br>
+&lt;/ul&gt;</p>
+		<p>Here's how to create &quot;forward&quot; and &quot;back&quot; pagination links:</p>
+		<p class="codehighlight">&lt;a href=&quot;javascript:myflowers.cycleit('prev')&quot;&gt;Back&lt;/a&gt; 
+		|
+		&lt;a href=&quot;javascript:myflowers.cycleit('next')&quot;&gt;Forward&lt;/a&gt;</p>&nbsp;</td>
+	</tr>
+	</table>
+
+<p>As a reminder, before calling this script, make sure you've added the 
+prerequisite codes to the HEAD section of your page:</p>
+<p class="codehighlight">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; 
+href=&quot;tabcontent.css&quot; /&gt;<br>
+<br>
+&lt;script type=&quot;text/javascript&quot; src=&quot;tabcontent.js&quot;&gt;<br>
+<br>
+/***********************************************<br>
+* Tab Content script v2.0- © Dynamic Drive DHTML code library 
+(www.dynamicdrive.com)<br>
+* This notice MUST stay intact for legal use<br>
+* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code<br>
+***********************************************/<br>
+<br>
+&lt;/script&gt;</p>
+<p>Lets see 4 examples now that highlight different features of this script:</p>
+
+<h3>Example #1- Basic implementation</h3>
+<p><!--webbot bot="HTMLMarkup" startspan --><ul id="countrytabs" class="shadetabs">
+<li><a href="#" rel="country1" class="selected">Tab 1</a></li>
+<li><a href="#" rel="country2">Tab 2</a></li>
+<li><a href="#" rel="country3">Tab 3</a></li>
+<li><a href="#" rel="country4">Tab 4</a></li>
+<li><a href="http://www.dynamicdrive.com">Dynamic Drive</a></li>
+</ul>
+
+<div style="border:1px solid gray; width:450px; margin-bottom: 1em; padding: 10px">
+
+<div id="country1" class="tabcontent">
+Tab content 1 here<br />Tab content 1 here<br />
+</div>
+
+<div id="country2" class="tabcontent">
+Tab content 2 here<br />Tab content 2 here<br />
+</div>
+
+<div id="country3" class="tabcontent">
+Tab content 3 here<br />Tab content 3 here<br />
+</div>
+
+<div id="country4" class="tabcontent">
+Tab content 4 here<br />Tab content 4 here<br />
+</div>
+
+</div>
+
+<script type="text/javascript">
+
+var countries=new ddtabcontent("countrytabs")
+countries.setpersist(true)
+countries.setselectedClassTarget("link") //"link" or "linkparent"
+countries.init()
+
+</script>
+
+<p><b><a href="javascript: countries.expandit(3)">Click here to select last tab</a></b></p>
+<!--webbot bot="HTMLMarkup" endspan i-checksum="47222" --></p>
+<p class="codehighlight">&lt;ul id=&quot;countrytabs&quot; class=&quot;shadetabs&quot;&gt;<br>
+&lt;li&gt;&lt;a href=&quot;#&quot; rel=&quot;country1&quot; class=&quot;selected&quot;&gt;Tab 1&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;#&quot; rel=&quot;country2&quot;&gt;Tab 2&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;#&quot; rel=&quot;country3&quot;&gt;Tab 3&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;#&quot; rel=&quot;country4&quot;&gt;Tab 4&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;http://www.dynamicdrive.com&quot;&gt;Dynamic Drive&lt;/a&gt;&lt;/li&gt;<br>
+&lt;/ul&gt;<br>
+<br>
+&lt;div style=&quot;border:1px solid gray; width:450px; margin-bottom: 1em; padding: 
+10px&quot;&gt;<br>
+<br>
+&lt;div id=&quot;country1&quot; class=&quot;tabcontent&quot;&gt;<br>
+Tab content 1 here&lt;br /&gt;Tab content 1 here&lt;br /&gt;<br>
+&lt;/div&gt;<br>
+<br>
+&lt;div id=&quot;country2&quot; class=&quot;tabcontent&quot;&gt;<br>
+Tab content 2 here&lt;br /&gt;Tab content 2 here&lt;br /&gt;<br>
+&lt;/div&gt;<br>
+<br>
+&lt;div id=&quot;country3&quot; class=&quot;tabcontent&quot;&gt;<br>
+Tab content 3 here&lt;br /&gt;Tab content 3 here&lt;br /&gt;<br>
+&lt;/div&gt;<br>
+<br>
+&lt;div id=&quot;country4&quot; class=&quot;tabcontent&quot;&gt;<br>
+Tab content 4 here&lt;br /&gt;Tab content 4 here&lt;br /&gt;<br>
+&lt;/div&gt;<br>
+<br>
+&lt;/div&gt;<br>
+<br>
+&lt;script type=&quot;text/javascript&quot;&gt;<br>
+<br>
+var countries=new ddtabcontent(&quot;countrytabs&quot;)<br>
+countries.setpersist(true)<br>
+countries.setselectedClassTarget(&quot;link&quot;) //&quot;link&quot; or &quot;linkparent&quot;<br>
+countries.init()<br>
+<br>
+&lt;/script&gt;<br>
+<br>
+&lt;p&gt;&lt;b&gt;&lt;a href=&quot;javascript:countries.expandit(3)&quot;&gt;Click here to select last 
+tab&lt;/a&gt;&lt;/b&gt;&lt;/p&gt;<br>
+&nbsp;</p>
+<h3>Example #2- Expanding of arbitrary DIVs on the page enabled</h3>
+<p>A tab can not only manipulate the visibility of the sub content it's assigned 
+to, but also additional, arbitrary DIVs on the page if you wish. This is done using the &quot;<code>rev</code>&quot; attribute 
+inside the tab link, and 
+setting them to the ID(s) of the arbitrary DIVs on the page to also 
+expand/contract:</p>
+<p><!--webbot bot="HTMLMarkup" startspan --><div id="flowernote" style="display:none; position:absolute; right: 30px; width:150px; height:150px; background-color:red; color:white">
+Arbitrary DIV 1
+</div>
+
+<div id="flowernote2" style="display:none; position:absolute; right: 200px; width:80px; height:80px; background-color:black; color:white">
+Arbitrary DIV 2
+</div>
+
+<div id="flowernote3" style="display:none; position:absolute; right: 30px; width:140px; height:140px; background-color:navy; color:white">
+Arbitrary DIV 3
+</div>
+
+
+<ul id="flowertabs" class="shadetabs">
+<li><a href="#" rel="tcontent1" class="selected">Tab 1</a></li>
+<li><a href="#" rel="tcontent2" rev="flowernote,flowernote2">Tab 2</a></li>
+<li><a href="#" rel="tcontent3">Tab 3</a></li>
+<li><a href="#" rel="tcontent4" rev="flowernote3">Tab 4</a></li>
+<li><a href="http://www.dynamicdrive.com/dynamicindex17/tabcontent.htm">Tab Content script</a></li>
+</ul>
+
+<div style="border:1px solid gray; width:450px; margin-bottom: 1em; padding: 10px">
+
+<div id="tcontent1" class="tabcontent">
+Tab content 1 here<br />Tab content 1 here<br />
+</div>
+
+<div id="tcontent2" class="tabcontent">
+Tab content 2 here<br />Tab content 2 here<br />
+</div>
+
+<div id="tcontent3" class="tabcontent">
+Tab content 3 here<br />Tab content 3 here<br />
+</div>
+
+<div id="tcontent4" class="tabcontent">
+Tab content 4 here<br />Tab content 4 here<br />
+</div>
+
+</div>
+
+<script type="text/javascript">
+
+var myflowers=new ddtabcontent("flowertabs")
+myflowers.setpersist(true)
+myflowers.setselectedClassTarget("link") //"link" or "linkparent"
+myflowers.init()
+
+</script>
+
+<p><b><a href="javascript: myflowers.expandit(2)">Click here to select 3rd tab</a></b></p><!--webbot bot="HTMLMarkup" endspan i-checksum="9024" --></p>
+<p class="codehighlight">&lt;div id=&quot;<font color="#FF0000">flowernote</font>&quot; style=&quot;display:none; 
+position:absolute; right: 30px; width:150px; height:150px; background-color:red; 
+color:white&quot;&gt;<br>
+Arbitrary DIV 1<br>
+&lt;/div&gt;<br>
+<br>
+&lt;div id=&quot;<font color="#FF0000">flowernote2</font>&quot; style=&quot;display:none; position:absolute; right: 200px; 
+width:80px; height:80px; background-color:black; color:white&quot;&gt;<br>
+Arbitrary DIV 2<br>
+&lt;/div&gt;<br>
+<br>
+&lt;div id=&quot;<font color="#FF0000">flowernote3</font>&quot; style=&quot;display:none; position:absolute; right: 30px; 
+width:140px; height:140px; background-color:navy; color:white&quot;&gt;<br>
+Arbitrary DIV 3<br>
+&lt;/div&gt;<br>
+<br>
+<br>
+&lt;ul id=&quot;flowertabs&quot; class=&quot;shadetabs&quot;&gt;<br>
+&lt;li&gt;&lt;a href=&quot;#&quot; rel=&quot;tcontent1&quot; class=&quot;selected&quot;&gt;Tab 1&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;#&quot; rel=&quot;tcontent2&quot; 
+<font color="#FF0000">rev=&quot;flowernote, flowernote2&quot;</font>&gt;Tab 2&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;#&quot; rel=&quot;tcontent3&quot;&gt;Tab 3&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;#&quot; rel=&quot;tcontent4&quot; 
+<font color="#FF0000">rev=&quot;flowernote3&quot;</font>&gt;Tab 4&lt;/a&gt;&lt;/li&gt;<br>
+&lt;li&gt;&lt;a href=&quot;http://www.dynamicdrive.com/dynamicindex17/tabcontent.htm&quot;&gt;Tab 
+Content script&lt;/a&gt;&lt;/li&gt;<br>
+&lt;/ul&gt;<br>
+<br>
+&lt;div style=&quot;border:1px solid gray; width:450px; margin-bottom: 1em; padding: 
+10px&quot;&gt;<br>
+<br>
+&lt;div id=&quot;tcontent1&quot; class=&quot;tabcontent&quot;&gt;<br>
+Tab content 1 here&lt;br /&gt;Tab content 1 here&lt;br /&gt;<br>
+&lt;/div&gt;<br>
+<br>
+&lt;div id=&quot;tcontent2&quot; class=&quot;tabcontent&quot;&gt;<br>
+Tab content 2 here&lt;br /&gt;Tab content 2 here&lt;br /&gt;<br>
+&lt;/div&gt;<br>
+<br>
+&lt;div id=&quot;tcontent3&quot; class=&quot;tabcontent&quot;&gt;<br>
+Tab content 3 here&lt;br /&gt;Tab content 3 here&lt;br /&gt;<br>
+&lt;/div&gt;<br>
+<br>
+&lt;div id=&quot;tcontent4&quot; class=&quot;tabcontent&quot;&gt;<br>
+Tab content 4 here&lt;br /&gt;Tab content 4 here&lt;br /&gt;<br>
+&lt;/div&gt;<br>
+<br>
+&lt;/div&gt;<br>
+<br>
+&lt;script type=&quot;text/javascript&quot;&gt;<br>
+<br>
+var myflowers=new ddtabcontent(&quot;flowertabs&quot;)<br>
+myflowers.setpersist(true)<br>
+myflowers.setselectedClassTarget(&quot;link&quot;) //&quot;link&quot; or &quot;linkparent&quot;<br>
+myflowers.init()<br>
+<br>
+&lt;/script&gt;<br>
+<br>
+&lt;p&gt;&lt;b&gt;&lt;a href=&quot;javascript:myflowers.expandit(2)&quot;&gt;Click here to select 3rd 
+tab&lt;/a&gt;&lt;/b&gt;&lt;/p&gt;</p>
+
+<p>Within the same &quot;<code>rev</code>&quot; attribute, separate multiple IDs with a 
+comma (ie: <code>rev=&quot;flowernote, flowernote2&quot;</code>). With the above code, clicking on Tab 2 will not only display the Tab sub 
+content with ID &quot;<code>tcontent2</code>&quot;, but also the two arbitrary DIVs 
+anywhere on the page called &quot;<code>flowernote</code>&quot; and &quot;<code>flowernote2</code>&quot;. 
+Clicking on Tab 4 will display &quot;<code>flowernote3</code>&quot; while also hiding &quot;<code>flowernote</code>&quot; 
+and &quot;<code>flowernote2</code>&quot;. In other words, the DIVs specified using the &quot;<code>rev</code>&quot; 
+attribute are interlinked.</p>
+<p>Make sure the code to intialize the Tab Content script appears <b>
+<font color="#FF0000">after</font></b> all DIVs specified using both the &quot;<code>rel</code>&quot; 
+and &quot;<code>rev</code>&quot; attributes within the page source! Otherwise, an error 
+will be thrown with the script complaining one of the DIVs specified doesn't 
+exist.</p>
+<h3>Example #3- Using images for the tabs</h3>
+<p>You can completely customize the look of the tabs, such as changing them to 
+image links. The script treats every link (&quot;<code>A</code>&quot;) within the specified tab 
+container as a potential tab link, so as long as your tabs are some form of 
+links, it will work. For example:</p>
+<p class="codehighlight">&lt;div id=&quot;photogallery&quot;&gt;<br>
+&lt;a href=&quot;#&quot; rel=&quot;tcontent1&quot; class=&quot;selected&quot;&gt;&lt;img 
+src=&quot;tab1.gif&quot; /&gt;&lt;/a&gt;&amp;nbsp;<br>
+&lt;a href=&quot;#&quot; rel=&quot;tcontent2&quot;&gt;&lt;img src=&quot;tab2.gif&quot; /&gt;&lt;/a&gt;&lt;/li&gt;&amp;nbsp;<br>
+&lt;a href=&quot;#&quot; rel=&quot;tcontent3&quot;&gt;&lt;img src=&quot;tab3.gif&quot; /&gt;&lt;/a&gt;&amp;nbsp;<br>
+&lt;a href=&quot;#&quot; rel=&quot;tcontent4&quot;&gt;&lt;img src=&quot;tab4.gif&quot; /&gt;&lt;/a&gt;<br>
+&lt;/div&gt;</p>
+<h3>Example #4- Changing the location the script looks for a
+<span class="codebg">class=&quot;selected&quot;</span> declaration</h3>
+<p>By default, if you wish a tab to be automatically selected when the page 
+loads, you add a <code>class=&quot;selected&quot;</code> attribute inside that tab link (&quot;<code>A</code>&quot;). 
+However, sometimes your CSS for the tabs may be structured in a way that would 
+make things a lot easier for you if you can add <code>class=&quot;selected&quot;</code> to 
+the parent of the tab link, and still have the &quot;default selected&quot; feature work. An example would be 
+tab links that are each wrapped around a DIV, and styling to the selected tab in 
+your CSS is on the DIV element, not the link:</p>
+<p class="codehighlight">&lt;div id=&quot;whatsnew&quot; class=&quot;someclass&quot;&gt;<br>
+&lt;div <font color="#FF0000">class=&quot;selected&quot;</font>&gt;&lt;a href=&quot;#&quot; 
+rel=&quot;tcontent1&quot;&gt;Tab 1&lt;/a&gt;&lt;/div&gt;<br>
+&lt;div&gt;&lt;a href=&quot;#&quot; rel=&quot;tcontent2&quot;&gt;Tab 2&lt;/a&gt;&lt;/div&gt;<br>
+&lt;div&gt;&lt;a href=&quot;#&quot; rel=&quot;tcontent3&quot;&gt;Tab 3&lt;/a&gt;&lt;/div&gt;<br>
+&lt;div&gt;&lt;a href=&quot;#&quot; rel=&quot;tcontent4&quot;&gt;Tab 4&lt;/a&gt;&lt;/div&gt;</p>
+<p>To tell the script to look for <code>class=&quot;selected&quot;</code> on each tab 
+link's parent container, you would call <code>setselectedClassTarget()</code> 
+with the string parameter in red:</p>
+<p class="codehighlight">&lt;script type=&quot;text/javascript&quot;&gt;<br>
+<br>
+var newcontent=new ddtabcontent(&quot;whatsnew&quot;)<br>
+newcontent.setselectedClassTarget(&quot;<font color="#FF0000">linkparent</font>&quot;) //&quot;link&quot; or &quot;linkparent&quot;<br>
+newcontent.init()<br>
+<br>
+&lt;/script&gt;</p>
+<h3>Example #5- Customizing the look of your Tabs</h3>
+<p>If it's not already clear after reading examples #3 and #4, you have full 
+flexibility 
+in customizing the look of your tabs, as long as you remember that every link 
+within your tab container will be scanned by the script for any special meaning 
+(ie: does it have a &quot;<code>rel</code>&quot; attribute?), so don't put any 
+non relevant links in there. Using the codes for 
+<a href="http://www.dynamicdrive.com/style/csslibrary/item/inverted-shift-down-menu/">
+Inverted Shift down menu</a> in our
+<a href="http://www.dynamicdrive.com/style/csslibrary/category/C1/">CSS 
+Horizontal Menus</a> section, here is the result:</p>
+<p><!--webbot bot="HTMLMarkup" startspan --><div style="border:1px solid gray; width:350px; height: 180px; padding: 5px;">
+
+<div id="dog1" class="tabcontent">
+Tab content 1 here<br />Tab content 1 here<br />
+<p><b><a href="javascript: mypets.expandit(3)">Click here to select tab with id="myfavorite"</a></b></p>
+</div>
+
+<div id="dog2" class="tabcontent">
+Tab content 2 here<br />Tab content 2 here<br />
+</div>
+
+<div id="dog3" class="tabcontent">
+Tab content 3 here<br />Tab content 3 here<br />
+</div>
+
+<div id="dog4" class="tabcontent">
+Tab content 4 here<br />Tab content 4 here<br />
+</div>
+
+</div>
+
+<div id="pettabs" class="invertedshiftdown">
+<ul>
+<li class="selected"><a href="#" rel="dog1">Tab 1</a></li>
+<li><a href="#" rel="dog2">Tab 2</a></li>
+<li><a href="#" rel="dog3">Tab 3</a></li>
+<li><a href="#" rel="dog4" id="myfavorite">Tab 4</a></li>
+<li><a href="http://www.google.com">Google</a></li>
+</ul>
+<br style="clear: left" />
+</div>
+
+
+<script type="text/javascript">
+
+var mypets=new ddtabcontent("pettabs")
+mypets.setpersist(false)
+mypets.setselectedClassTarget("linkparent")
+mypets.init()
+
+</script><!--webbot bot="HTMLMarkup" endspan i-checksum="54090" --></p>
+<h1 class="navselectheader">Table Of Contents</h1>
+<p>
+    This script consists of an index page plus a supplementary page:<ul class="navselectlist">
+	<li><a href="tabcontent.htm">Script Index Page</a></li>
+	<li>Common questions and solutions</li>
+	</ul>
+	<p>
+    <script type="text/javascript"><!--
+google_ad_client = "pub-3356683755662088";
+google_alternate_color = "FFFFCC";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "text";
+google_ad_channel = "";
+google_color_border = "FFFFFF";
+google_color_bg = "FFFFFF";
+google_color_link = "0000CC";
+google_color_text = "000033";
+google_color_url = "999999";
+//-->
+</script>
+<script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></td>
+  </tr>
+</table>
+
+
+<p id="footer">Copyright © 1998-2008 <a href="http://www.dynamicdrive.com">
+Dynamic Drive.</a> Please read <a href="http://dynamicdrive.com/notice.htm">Terms Of Use here</a> before using any of the scripts.</p>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-55377-2");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+
+
+</body>
+
+</html>

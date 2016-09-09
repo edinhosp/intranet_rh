@@ -1,0 +1,10 @@
+<script>
+
+//Popup Window Script
+//By JavaScript Kit (http://javascriptkit.com)
+function openpopup(){
+var popurl="ferias_coletivas/index.html"
+winpops=window.open(popurl,"popfaq","width=600,height=400,")
+}
+openpopup()
+</script>

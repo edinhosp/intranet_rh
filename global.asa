@@ -1,0 +1,65 @@
+<SCRIPT LANGUAGE=VBScript RUNAT=Server>
+
+Sub Application_OnStart
+	Application("Server") = "http://10.0.1.91"
+	Application("Site")="http://10.0.1.91/rh/intranet.asp"
+	Application("ConSqlt") = "Provider=SQLOLEDB.1; SERVER=serveradm; DATABASE=corporermteste; UID=sysdba; PWD=masterkey;"
+	Application("Conexao_old")   = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=c:\edson\rhonline2.mdb;"
+
+	Application("ConSql") = "Provider=SQLOLEDB.1; SERVER=10.0.0.90; DATABASE=corporerm; UID=intranet_rh; PWD=qazwsx6371;"
+	Application("Conexao") = "Provider=SQLOLEDB.1; SERVER=10.0.0.90; DATABASE=intranet_rh; UID=intranet_rh; PWD=qazwsx6371;"
+	Application("ConSqlteste") = "Provider=SQLOLEDB.1; SERVER=10.0.0.151; DATABASE=corporerm_teste; UID=02973; PWD=123456T;"
+	Application("Conexao2") = "Provider=SQLOLEDB.1; SERVER=10.0.255.213; DATABASE=intranet_rh; UID=intranet_rh; PWD=qazwsx6371;"
+
+	Application("MySQL")="Driver={MySQL ODBC 3.51 Driver}; Server=localhost; Port=3306; Option=0; Socket=; Stmt=; Database=rhonline2; Uid=root; Pwd="
+	'Application("MySQLfieo")="Driver={MySQL ODBC 3.51 Driver}; Server=colossus2.fieo.br; Port=3306; Option=0; Socket=; Stmt=; Database=website; Uid=rh; Pwd=!@#qaz"
+	Application("MySQLfieo")="Driver={MySQL ODBC 3.51 Driver}; Server=172.16.0.38; Port=3306; Option=0; Socket=; Stmt=; Database=website; Uid=rh; Pwd=!@#qaz"
+
+	Application("UsuariosAtivos")=0
+	Application("Manutencao")=0
+	Application("tetoinss")=570.88
+	Application("valoraula")=40.36
+End Sub
+
+Sub Session_OnStart
+	Session.LCID=1046
+	Session.Timeout = 60
+	Session("UsuarioMaster")=""
+	Session("Quiosque")=""
+	Session("SessaoTimeout")="0"
+	Session("LogMasterErro")=0
+	Session("InstrucaoSQL") = ""
+	Session("RegistrosPorPagina") = 20
+	Session("RegistrosPagina") = 20
+	Application.Lock
+	Application("UsuariosAtivos")=Application("UsuariosAtivos")+1
+	Application.Unlock
+	Session("grant_rh")    ="N"
+	Session("grant_ifip")  ="N"
+	Session("grant_docens")="N"
+	Session("grant_curso") ="N"
+	Session("grant_menu")  ="0"
+	session("estilo")="diversos.css"
+	session("lanc31")="2012%1"
+	session("sqlf31")="AND (g.perlet2 like '2012%1') "
+End Sub
+
+Sub Session_OnEnd
+	Session("UsuarioMaster")=""
+	Session("Quiosque")=""
+	Session("SessaoTimeout")="1"
+	Application.Lock
+	Application("UsuariosAtivos")=Application("UsuariosAtivos")-1
+	Application.Unlock
+
+	set conexao=server.createobject ("ADODB.Connection")
+	conexao.Open application("conexao")
+	sql="UPDATE login SET saida = getdate() WHERE sessao='" & session.sessionid & "';"
+	set rs=server.createobject ("ADODB.Recordset")
+	Set rs = conexao.Execute (sql, , adCmdText)
+	set rs=nothing
+	set conexao=nothing
+	session("estilo")="diversos.css"
+End Sub
+
+</SCRIPT>

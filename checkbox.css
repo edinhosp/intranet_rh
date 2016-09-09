@@ -1,0 +1,43 @@
+
+input[type=checkbox] {
+	visibility: hidden;
+}
+
+/**
+ * Create the slider bar
+ */
+.checkboxOne {
+	width: 40px;
+	height: 10px;
+	background: #555;
+	margin: 20px 80px;
+	position: relative;
+	border-radius: 3px;
+}
+/**
+ * Create the slider from the label
+ */
+.checkboxOne label {
+	display: block;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	-o-transition: all .5s ease;
+	-ms-transition: all .5s ease;
+	transition: all .5s ease;
+	cursor: pointer;
+	position: absolute;
+	top: -3px;
+	left: -3px;
+
+	background: #ccc;
+}
+/**
+ * Move the slider in the correct position if the checkbox is clicked
+ */
+.checkboxOne input[type=checkbox]:checked + label {
+	left: 27px;
+}
